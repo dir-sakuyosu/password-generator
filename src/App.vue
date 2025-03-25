@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 
-const pwLength = ref(12)
+const inputLength = ref('12')
 const excludeSimilarChars = ref(true)
 const useSmallAlpha = ref(true)
 const useLargeAlpha = ref(true)
@@ -90,17 +90,29 @@ const chars = computed(() => {
   }
   return ret
 })
+
+const passwordLen = computed(() => {
+  const parsed = parseInt(inputLength.value)
+  if (Number.isNaN(parsed) || parsed < 4) {
+    return 0
+  }
+  return parsed
+})
+
 const getOneChar = () => {
   return chars.value[Math.floor(Math.random() * chars.value.length)]
 }
 const getCandidate = () => {
   const retArr: string[] = []
-  for (let i = 0; i < pwLength.value; i++) {
+  for (let i = 0; i < passwordLen.value; i++) {
     retArr.push(getOneChar())
   }
   return retArr.join('')
 }
 const getOnePhrase = () => {
+  if (passwordLen.value < 4) {
+    return ''
+  }
   let count = 0
   while (true) {
     if (count++ > 10000) {
@@ -179,7 +191,7 @@ const onClickUncheckAll = () => {
             <div class="field-body">
               <div class="field">
                 <div class="control">
-                  <input class="input" type="text" v-model="pwLength" />
+                  <input class="input" type="text" v-model="inputLength" />
                 </div>
               </div>
             </div>
@@ -307,7 +319,7 @@ const onClickUncheckAll = () => {
     </div>
 
     <div class="content">
-      <p class="has-text-dark">{{ chars.join(', ') }}</p>
+      <p class="has-text-dark">候補文字: {{ chars.join(', ') }}</p>
     </div>
   </div>
 </template>
