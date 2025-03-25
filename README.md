@@ -1,6 +1,6 @@
 # password-generator
 
-This template should help get you started developing with Vue 3 in Vite.
+A random password generator: [Go to Page](https://dir-sakuyosu.github.io/password-generator/)
 
 ## Recommended IDE Setup
 

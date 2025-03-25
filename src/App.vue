@@ -156,7 +156,7 @@ const onClickUncheckAll = () => {
 
 <template>
   <div>
-    <section class="hero is-primary">
+    <section class="hero is-info">
       <div class="hero-body">
         <p class="title">パスワード生成</p>
       </div>
@@ -165,8 +165,8 @@ const onClickUncheckAll = () => {
     <div class="container">
       <div class="content">
         <p>
-          選んだ文字種でランダムなパスワードを生成します。<br />
-          選ばれた文字種は結果に必ず含まれます。
+          指定長のランダムなパスワードを生成します<br />
+          選択した文字種は少なくとも1文字は含まれます
         </p>
       </div>
 
